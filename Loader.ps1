@@ -13,13 +13,12 @@ Clear-Host
 # SAFE ASCII LOGO (NO BREAK)
 # =========================
 $logo = @"
- __   __  _______  _______  _______  _______  _______ 
-|  | |  ||   _   ||       ||       ||       ||       |
-|  |_|  ||  |_|  ||  _____||  _____||  _____||  _____|
-|       ||       || |_____ | |_____ | |_____ | |_____ 
-|       ||       ||_____  ||_____  ||_____  ||_____  |
-|   _   ||   _   | _____| | _____| | _____| | _____| |
-|__| |__||__| |__||_______||_______||_______||_______|
+
+HH   HH  Y   Y  PPPPP   EEEEE  RRRRR
+HH   HH   Y Y   PP  PP  EE     RR  RR
+HHHHHHH    Y    PPPPP   EEEEE  RRRRR
+HH   HH    Y    PP      EE     RR RR
+HH   HH    Y    PP      EEEEE  RR  RR
 
             H Y P E R   L O A D E R
               S Y S T E M   B O O T
@@ -39,8 +38,8 @@ for ($i = 0; $i -le 100; $i += 5) {
 }
 
 Write-Host ""
-Write-Host "[✔] BOOT COMPLETE" -ForegroundColor Green
-Write-Host "[✔] INITIALIZING PAYLOAD..." -ForegroundColor Yellow
+Write-Host "[✔] CONNECT TO SERVER" -ForegroundColor Yellow
+Write-Host "[✔] SUCCESFULLY TO CONNECT..." -ForegroundColor Green
 
 Start-Sleep -Milliseconds 600
 
