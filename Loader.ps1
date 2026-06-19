@@ -1,3 +1,7 @@
+# =========================
+# LOADING SCREEN
+# =========================
+
 chcp 65001 > $null
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
@@ -8,18 +12,26 @@ $Host.UI.RawUI.WindowTitle = "LOADING"
 Clear-Host
 
 Write-Host ""
-Write-Host "██╗      ██████╗  █████╗ ██████╗ ██╗███╗   ██╗ ██████╗ " -ForegroundColor DarkBlue
-Write-Host "██║     ██╔═══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝ " -ForegroundColor White
-Write-Host "██║     ██║   ██║███████║██║  ██║██║██╔██╗ ██║██║  ███╗" -ForegroundColor DarkBlue
-Write-Host "██║     ██║   ██║██╔══██║██║  ██║██║██║╚██╗██║██║   ██║" -ForegroundColor White
-Write-Host "███████╗╚██████╔╝██║  ██║██████╔╝██║██║ ╚████║╚██████╔╝" -ForegroundColor DarkBlue
-Write-Host "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ " -ForegroundColor White
-Write-Host ""
+Write-Host "                    ██╗      ██████╗  █████╗ ██████╗ ██╗███╗   ██╗ ██████╗ " -ForegroundColor DarkBlue
+Write-Host "                    ██║     ██╔═══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝ " -ForegroundColor White
+Write-Host "                    ██║     ██║   ██║███████║██║  ██║██║██╔██╗ ██║██║  ███╗" -ForegroundColor DarkBlue
+Write-Host "                    ██║     ██║   ██║██╔══██║██║  ██║██║██║╚██╗██║██║   ██║" -ForegroundColor White
+Write-Host "                    ███████╗╚██████╔╝██║  ██║██████╔╝██║██║ ╚████║╚██████╔╝" -ForegroundColor DarkBlue
+Write-Host "                    ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ " -ForegroundColor White
 
 Write-Host "[ • ] SOURCE :" -ForegroundColor Cyan
 Write-Host "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat" -ForegroundColor Gray
+Write-Host ""
+
+for ($i = 0; $i -le 100; $i += 2)
+{
+    Write-Progress -Activity "LOADING..." -Status "$i%" -PercentComplete $i
+    Start-Sleep -Milliseconds 25
+}
 
 Write-Host ""
-Write-Host "[ • ] READY" -ForegroundColor Green
+Write-Host "                           [ • ] LOADING COMPLETE" -ForegroundColor Green
+Write-Host "                           [ • ] HYPER READY" -ForegroundColor Cyan
+Write-Host ""
 
 Pause
