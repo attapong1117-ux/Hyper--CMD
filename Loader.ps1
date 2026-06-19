@@ -1,18 +1,15 @@
 # =========================
-# HYPER ALL IN ONE + GITHUB
+# TRUE BLACK CONSOLE FIX
 # =========================
+
+# เปิด CMD สีดำจริงก่อน
+cmd /c "color 0A && title HYPER LOADER && mode con: cols=120 lines=30"
 
 chcp 65001 > $null
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = New-Object System.Text.UTF8Encoding
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# =========================
-# CONSOLE BLACK MODE
-# =========================
-$Host.UI.RawUI.BackgroundColor = "Black"
-$Host.UI.RawUI.ForegroundColor = "Green"
-$Host.UI.RawUI.WindowTitle = "HYPER LOADER"
-mode con: cols=120 lines=30
 Clear-Host
 
 # =========================
@@ -28,45 +25,32 @@ HH   HH    Y    PP      EEEEE  RR  RR
         H Y P E R   L O A D E R
 "@
 
-Write-Host $logo -ForegroundColor Cyan
+Write-Host $logo -ForegroundColor Green
 Write-Host ""
 
 # =========================
 # LOADING
 # =========================
-Write-Host "[+] BOOTING SYSTEM..." -ForegroundColor Yellow
-Start-Sleep -Milliseconds 500
-
 for ($i = 0; $i -le 100; $i += 5) {
-    Write-Progress -Activity "LOADING HYPER SYSTEM" -Status "$i% COMPLETE" -PercentComplete $i
-    Start-Sleep -Milliseconds 25
+    Write-Progress -Activity "BOOTING HYPER" -Status "$i%" -PercentComplete $i
+    Start-Sleep -Milliseconds 30
 }
 
-Write-Host ""
-Write-Host "[✔] SYSTEM READY" -ForegroundColor Green
+Write-Host "[✔] READY" -ForegroundColor Green
 Write-Host "[✔] CONNECTING GITHUB..." -ForegroundColor Cyan
 
 # =========================
-# GITHUB PAYLOAD
+# GITHUB RUN
 # =========================
 $url = "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat"
 $file = "$env:TEMP\Hyper.bat"
 
 try {
     Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing -ErrorAction Stop
-
-    Write-Host "[✔] DOWNLOAD COMPLETE" -ForegroundColor Green
-    Write-Host "[✔] EXECUTING PAYLOAD..." -ForegroundColor Cyan
-
     Start-Process "cmd.exe" -ArgumentList "/c `"$file`""
-    [console]::beep(1000,200)
 }
 catch {
-    Write-Host "[X] FAILED TO LOAD FROM GITHUB" -ForegroundColor Red
-    Write-Host $_.Exception.Message -ForegroundColor DarkRed
-    [console]::beep(200,500)
+    Write-Host "[X] ERROR LOADING GITHUB" -ForegroundColor Red
 }
 
-Write-Host ""
-Write-Host ">>> HYPER LOADER ACTIVE <<<" -ForegroundColor Green
 pause
