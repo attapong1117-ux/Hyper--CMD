@@ -25,7 +25,7 @@ HH   HH    Y    PP      EEEEE  RR  RR
         H Y P E R   L O A D E R
 "@
 
-Write-Host $logo -ForegroundColor Green
+Write-Host $logo -ForegroundColor Dark Blue
 Write-Host ""
 
 # =========================
