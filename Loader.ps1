@@ -3,7 +3,7 @@
 # =========================
 
 # เปิด CMD สีดำจริงก่อน
-cmd /c "color 0A && title HYPER LOADER && mode con: cols=120 lines=30"
+cmd /c "color 01 && title HYPER LOADER && mode con: cols=120 lines=30"
 
 chcp 65001 > $null
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
