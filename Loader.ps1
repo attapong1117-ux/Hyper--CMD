@@ -18,6 +18,8 @@ Write-Host "██║     ██║   ██║██╔══██║██║
 Write-Host "███████╗╚██████╔╝██║  ██║██████╔╝██║██║ ╚████║╚██████╔╝" -ForegroundColor DarkBlue
 Write-Host "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ " -ForegroundColor White
 Write-Host ""
+Write-Host "                        [ • ] LOADING..." -ForegroundColor Cyan
+Write-Host ""
 
 for ($i = 0; $i -le 100; $i += 2)
 {
