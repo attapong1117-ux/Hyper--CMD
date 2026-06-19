@@ -1,52 +1,70 @@
 # =========================
-# LOADING SCREEN + RUN SCRIPT
+# HYPER LOADER ASCII SAFE
 # =========================
 
 chcp 65001 > $null
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-
-# Force TLS (สำคัญมากสำหรับ GitHub)
+$OutputEncoding = New-Object System.Text.UTF8Encoding
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
-$Host.UI.RawUI.BackgroundColor = "Black"
-$Host.UI.RawUI.ForegroundColor = "White"
-$Host.UI.RawUI.WindowTitle = "LOADING"
 
 Clear-Host
 
-Write-Host ""
-Write-Host "                    ██╗      ██████╗  █████╗ ██████╗ ██╗███╗   ██╗ ██████╗ " -ForegroundColor DarkBlue
-Write-Host "                    ██║     ██╔═══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝ " -ForegroundColor White
-Write-Host "                    ██║     ██║   ██║███████║██║  ██║██║██╔██╗ ██║██║  ███╗" -ForegroundColor DarkBlue
-Write-Host "                    ██║     ██║   ██║██╔══██║██║  ██║██║██║╚██╗██║██║   ██║" -ForegroundColor White
-Write-Host "                    ███████╗╚██████╔╝██║  ██║██████╔╝██║██║ ╚████║╚██████╔╝" -ForegroundColor DarkBlue
-Write-Host "                    ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ " -ForegroundColor White
+# =========================
+# SAFE ASCII LOGO (NO BREAK)
+# =========================
+$logo = @"
+ __   __  _______  _______  _______  _______  _______ 
+|  | |  ||   _   ||       ||       ||       ||       |
+|  |_|  ||  |_|  ||  _____||  _____||  _____||  _____|
+|       ||       || |_____ | |_____ | |_____ | |_____ 
+|       ||       ||_____  ||_____  ||_____  ||_____  |
+|   _   ||   _   | _____| | _____| | _____| | _____| |
+|__| |__||__| |__||_______||_______||_______||_______|
 
-Write-Host ""
-Write-Host "[ • ] SOURCE :" -ForegroundColor Cyan
-Write-Host "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat" -ForegroundColor Gray
+            H Y P E R   L O A D E R
+              S Y S T E M   B O O T
+"@
+
+Write-Host $logo -ForegroundColor Cyan
 Write-Host ""
 
-# LOADING BAR
-for ($i = 0; $i -le 100; $i += 2) {
-    Write-Progress -Activity "LOADING..." -Status "$i%" -PercentComplete $i
-    Start-Sleep -Milliseconds 25
+Start-Sleep -Milliseconds 500
+
+# =========================
+# BOOT EFFECT
+# =========================
+for ($i = 0; $i -le 100; $i += 5) {
+    Write-Progress -Activity "SYSTEM BOOTING" -Status "$i% COMPLETE" -PercentComplete $i
+    Start-Sleep -Milliseconds 35
 }
 
 Write-Host ""
-Write-Host "                           [ • ] LOADING COMPLETE" -ForegroundColor Green
-Write-Host "                           [ • ] LAUNCHING SCRIPT..." -ForegroundColor Cyan
-Write-Host ""
+Write-Host "[✔] BOOT COMPLETE" -ForegroundColor Green
+Write-Host "[✔] INITIALIZING PAYLOAD..." -ForegroundColor Yellow
+
+Start-Sleep -Milliseconds 600
 
 # =========================
-# DOWNLOAD + RUN BAT FROM GITHUB
+# DOWNLOAD + RUN
 # =========================
-
 $url = "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat"
-$batFile = "$env:TEMP\Hyper.bat"
+$file = "$env:TEMP\Hyper.bat"
 
-Invoke-WebRequest -Uri $url -OutFile $batFile -UseBasicParsing
+try {
+    Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing -ErrorAction Stop
 
-Start-Process "cmd.exe" -ArgumentList "/c `"$batFile`""
+    Write-Host "[✔] DOWNLOAD OK" -ForegroundColor Green
+    Write-Host "[✔] RUNNING..." -ForegroundColor Cyan
 
-Pause
+    Start-Process "cmd.exe" -ArgumentList "/c `"$file`""
+    [console]::beep(1000,300)
+}
+catch {
+    Write-Host "[X] LOAD FAILED" -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor DarkRed
+    [console]::beep(200,500)
+}
+
+Write-Host ""
+Write-Host "SYSTEM ACTIVE" -ForegroundColor Green
+pause
