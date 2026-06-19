@@ -1,50 +1,53 @@
 # =========================
-# HYPER LOADER ASCII SAFE
+# HYPER ALL IN ONE + GITHUB
 # =========================
 
 chcp 65001 > $null
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = New-Object System.Text.UTF8Encoding
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+# =========================
+# CONSOLE BLACK MODE
+# =========================
+$Host.UI.RawUI.BackgroundColor = "Black"
+$Host.UI.RawUI.ForegroundColor = "Green"
+$Host.UI.RawUI.WindowTitle = "HYPER LOADER"
+mode con: cols=120 lines=30
 Clear-Host
 
 # =========================
-# SAFE ASCII LOGO (NO BREAK)
+# ASCII LOGO
 # =========================
 $logo = @"
-
 HH   HH  Y   Y  PPPPP   EEEEE  RRRRR
 HH   HH   Y Y   PP  PP  EE     RR  RR
 HHHHHHH    Y    PPPPP   EEEEE  RRRRR
 HH   HH    Y    PP      EE     RR RR
 HH   HH    Y    PP      EEEEE  RR  RR
 
-            H Y P E R   L O A D E R
-              S Y S T E M   B O O T
+        H Y P E R   L O A D E R
 "@
 
 Write-Host $logo -ForegroundColor Cyan
 Write-Host ""
 
+# =========================
+# LOADING
+# =========================
+Write-Host "[+] BOOTING SYSTEM..." -ForegroundColor Yellow
 Start-Sleep -Milliseconds 500
 
-# =========================
-# BOOT EFFECT
-# =========================
 for ($i = 0; $i -le 100; $i += 5) {
-    Write-Progress -Activity "SYSTEM BOOTING" -Status "$i% COMPLETE" -PercentComplete $i
-    Start-Sleep -Milliseconds 35
+    Write-Progress -Activity "LOADING HYPER SYSTEM" -Status "$i% COMPLETE" -PercentComplete $i
+    Start-Sleep -Milliseconds 25
 }
 
 Write-Host ""
-Write-Host "[✔] CONNECT TO SERVER" -ForegroundColor Yellow
-Write-Host "[✔] SUCCESFULLY TO CONNECT..." -ForegroundColor Green
-
-Start-Sleep -Milliseconds 600
+Write-Host "[✔] SYSTEM READY" -ForegroundColor Green
+Write-Host "[✔] CONNECTING GITHUB..." -ForegroundColor Cyan
 
 # =========================
-# DOWNLOAD + RUN
+# GITHUB PAYLOAD
 # =========================
 $url = "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat"
 $file = "$env:TEMP\Hyper.bat"
@@ -52,18 +55,18 @@ $file = "$env:TEMP\Hyper.bat"
 try {
     Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing -ErrorAction Stop
 
-    Write-Host "[✔] DOWNLOAD OK" -ForegroundColor Green
-    Write-Host "[✔] RUNNING..." -ForegroundColor Cyan
+    Write-Host "[✔] DOWNLOAD COMPLETE" -ForegroundColor Green
+    Write-Host "[✔] EXECUTING PAYLOAD..." -ForegroundColor Cyan
 
     Start-Process "cmd.exe" -ArgumentList "/c `"$file`""
-    [console]::beep(1000,300)
+    [console]::beep(1000,200)
 }
 catch {
-    Write-Host "[X] LOAD FAILED" -ForegroundColor Red
+    Write-Host "[X] FAILED TO LOAD FROM GITHUB" -ForegroundColor Red
     Write-Host $_.Exception.Message -ForegroundColor DarkRed
     [console]::beep(200,500)
 }
 
 Write-Host ""
-Write-Host "SYSTEM ACTIVE" -ForegroundColor Green
+Write-Host ">>> HYPER LOADER ACTIVE <<<" -ForegroundColor Green
 pause
