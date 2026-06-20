@@ -1,56 +1,60 @@
 # =========================
-# TRUE BLACK CONSOLE FIX
+# HYPER LOADER ALL IN ONE
 # =========================
-
-# เปิด CMD สีดำจริงก่อน
-cmd /c "color 01 && title HYPER LOADER && mode con: cols=120 lines=30"
 
 chcp 65001 > $null
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-$OutputEncoding = New-Object System.Text.UTF8Encoding
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+# ตั้งค่าหน้าจอ
+$Host.UI.RawUI.BackgroundColor = "Black"
+$Host.UI.RawUI.ForegroundColor = "White"
+$Host.UI.RawUI.WindowTitle = "HYPER LOADING"
 
 Clear-Host
 
 # =========================
-# ASCII LOGO
+# LOGO
 # =========================
-$logo = @"
-HH   HH  Y   Y  PPPPP   EEEEE  RRRRR
-HH   HH   Y Y   PP  PP  EE     RR  RR
-HHHHHHH    Y    PPPPP   EEEEE  RRRRR
-HH   HH    Y    PP      EE     RR RR
-HH   HH    Y    PP      EEEEE  RR  RR
 
-        H Y P E R   L O A D E R
-"@
+Write-Host ""
+Write-Host "██╗  ██╗ ██╗   ██╗██████╗ ███████╗██████╗" -ForegroundColor DarkBlue
+Write-Host "██║  ██║ ╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗" -ForegroundColor White
+Write-Host "███████║  ╚████╔╝ ██████╔╝█████╗  ██████╔╝" -ForegroundColor DarkBlue
+Write-Host "██╔══██║   ╚██╔╝  ██╔═══╝ ██╔══╝  ██╔══██╗" -ForegroundColor White
+Write-Host "██║  ██║    ██║   ██║     ███████╗██║  ██║" -ForegroundColor DarkBlue
+Write-Host "╚═╝  ╚═╝    ╚═╝   ╚═╝     ╚══════╝╚═╝  ╚═╝" -ForegroundColor White
 
-Write-Host $logo -ForegroundColor Dark Blue
+Write-Host ""
+Write-Host "──────────────────────────────────────────────" -ForegroundColor DarkBlue
+Write-Host "[ • ] HYPER LOADING SYSTEM" -ForegroundColor Cyan
+Write-Host "[ • ] STATUS : STARTING..." -ForegroundColor White
 Write-Host ""
 
 # =========================
-# LOADING
+# LOADING BAR
 # =========================
-for ($i = 0; $i -le 100; $i += 5) {
-    Write-Progress -Activity "BOOTING HYPER" -Status "$i%" -PercentComplete $i
-    Start-Sleep -Milliseconds 30
+
+for ($i = 0; $i -le 100; $i += 2) {
+    Write-Progress -Activity "LOADING HYPER" -Status "$i%" -PercentComplete $i
+    Start-Sleep -Milliseconds 25
 }
 
-Write-Host "[✔] READY" -ForegroundColor Green
-Write-Host "[✔] CONNECTING GITHUB..." -ForegroundColor Cyan
+Write-Host ""
+Write-Host "[ • ] LOADING COMPLETE" -ForegroundColor Green
+Write-Host "[ • ] STARTING HYPER.BAT..." -ForegroundColor Cyan
+Write-Host ""
+
+Start-Sleep 1
 
 # =========================
-# GITHUB RUN
+# RUN BAT (LOCAL FILE)
 # =========================
-$url = "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat"
-$file = "$env:TEMP\Hyper.bat"
 
-try {
-    Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing -ErrorAction Stop
-    Start-Process "cmd.exe" -ArgumentList "/c `"$file`""
-}
-catch {
-    Write-Host "[X] ERROR LOADING GITHUB" -ForegroundColor Red
-}
+$bat = Join-Path $PSScriptRoot "Hyper.bat"
 
-pause
+if (Test-Path $bat) {
+    Start-Process -FilePath $bat -WorkingDirectory $PSScriptRoot
+} else {
+    Write-Host "[ ERROR ] Hyper.bat NOT FOUND" -ForegroundColor Red
+    Pause
+}
