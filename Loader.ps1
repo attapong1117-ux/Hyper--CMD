@@ -3,7 +3,7 @@ chcp 65001 > $null
 
 $Host.UI.RawUI.BackgroundColor = "Black"
 $Host.UI.RawUI.ForegroundColor = "White"
-$Host.UI.RawUI.WindowTitle = "HYPER LOADING"
+$Host.UI.RawUI.WindowTitle = "HYPER LOADER"
 
 Clear-Host
 
@@ -25,7 +25,7 @@ Write-Host "██║  ██║    ██║   ██║     ██████
 Write-Host "╚═╝  ╚═╝    ╚═╝   ╚═╝     ╚══════╝╚═╝  ╚═╝" -ForegroundColor White
 
 Write-Host ""
-Write-Host "[ • ] CONNECTING GITHUB..." -ForegroundColor Cyan
+Write-Host "[ • ] CONNECTING HYPER..." -ForegroundColor Cyan
 
 # =========================
 # LOADING BAR
@@ -44,7 +44,7 @@ $batUrl  = "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hy
 $batPath = "$env:TEMP\Hyper.bat"
 
 Write-Host ""
-Write-Host "[ • ] DOWNLOADING..." -ForegroundColor Yellow
+Write-Host "[ • ] PREPARE HYPER..." -ForegroundColor Yellow
 
 Invoke-WebRequest -Uri $batUrl -OutFile $batPath
 
@@ -53,7 +53,7 @@ Invoke-WebRequest -Uri $batUrl -OutFile $batPath
 # =========================
 [console]::beep(1200,200)
 
-Write-Host "[ • ] STARTING FILE..." -ForegroundColor Green
+Write-Host "[ • ] STARTING HYPER..." -ForegroundColor Green
 
 Start-Sleep 1
 
@@ -64,5 +64,5 @@ Start-Sleep 1
 Start-Process $batPath
 
 Write-Host ""
-Write-Host "[ DONE ]" -ForegroundColor Green
+Write-Host "[ SUCCESFULLY ]" -ForegroundColor Green
 Pause
