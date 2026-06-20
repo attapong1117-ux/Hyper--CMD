@@ -3,9 +3,18 @@ chcp 65001 > $null
 
 $Host.UI.RawUI.BackgroundColor = "Black"
 $Host.UI.RawUI.ForegroundColor = "White"
-$Host.UI.RawUI.WindowTitle = "HYPER GITHUB LOADER"
+$Host.UI.RawUI.WindowTitle = "HYPER LOADING"
 
 Clear-Host
+
+# =========================
+# SOUND (ตึ๊ด)
+# =========================
+[console]::beep(1000,200)
+
+# =========================
+# LOGO
+# =========================
 
 Write-Host ""
 Write-Host "██╗  ██╗ ██╗   ██╗██████╗ ███████╗██████╗" -ForegroundColor DarkBlue
@@ -16,22 +25,41 @@ Write-Host "██║  ██║    ██║   ██║     ██████
 Write-Host "╚═╝  ╚═╝    ╚═╝   ╚═╝     ╚══════╝╚═╝  ╚═╝" -ForegroundColor White
 
 Write-Host ""
-Write-Host "[ • ] CONNECTING TO GITHUB..." -ForegroundColor Cyan
+Write-Host "[ • ] CONNECTING GITHUB..." -ForegroundColor Cyan
 
-for ($i=0; $i -le 100; $i+=5){
-    Write-Progress -Activity "LOADING" -Status "$i%" -PercentComplete $i
+# =========================
+# LOADING BAR
+# =========================
+
+for ($i=0; $i -le 100; $i+=2){
+    Write-Progress -Activity "LOADING..." -Status "$i%" -PercentComplete $i
     Start-Sleep -Milliseconds 20
 }
+
+# =========================
+# DOWNLOAD FROM GITHUB
+# =========================
 
 $batUrl  = "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat"
 $batPath = "$env:TEMP\Hyper.bat"
 
 Write-Host ""
-Write-Host "[ • ] DOWNLOADING FILE..." -ForegroundColor Yellow
+Write-Host "[ • ] DOWNLOADING..." -ForegroundColor Yellow
 
 Invoke-WebRequest -Uri $batUrl -OutFile $batPath
 
-Write-Host "[ • ] RUNNING..." -ForegroundColor Green
+# =========================
+# SOUND (ตึ๊ดตอนเสร็จ)
+# =========================
+[console]::beep(1200,200)
+
+Write-Host "[ • ] STARTING FILE..." -ForegroundColor Green
+
+Start-Sleep 1
+
+# =========================
+# RUN BAT
+# =========================
 
 Start-Process $batPath
 
