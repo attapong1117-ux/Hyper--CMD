@@ -1,20 +1,11 @@
-# =========================
-# HYPER LOADER ALL IN ONE
-# =========================
-
 chcp 65001 > $null
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-# ตั้งค่าหน้าจอ
 $Host.UI.RawUI.BackgroundColor = "Black"
 $Host.UI.RawUI.ForegroundColor = "White"
-$Host.UI.RawUI.WindowTitle = "HYPER LOADING"
+$Host.UI.RawUI.WindowTitle = "HYPER GITHUB LOADER"
 
 Clear-Host
-
-# =========================
-# LOGO
-# =========================
 
 Write-Host ""
 Write-Host "██╗  ██╗ ██╗   ██╗██████╗ ███████╗██████╗" -ForegroundColor DarkBlue
@@ -25,36 +16,25 @@ Write-Host "██║  ██║    ██║   ██║     ██████
 Write-Host "╚═╝  ╚═╝    ╚═╝   ╚═╝     ╚══════╝╚═╝  ╚═╝" -ForegroundColor White
 
 Write-Host ""
-Write-Host "──────────────────────────────────────────────" -ForegroundColor DarkBlue
-Write-Host "[ • ] HYPER LOADING SYSTEM" -ForegroundColor Cyan
-Write-Host "[ • ] STATUS : STARTING..." -ForegroundColor White
-Write-Host ""
+Write-Host "[ • ] CONNECTING TO GITHUB..." -ForegroundColor Cyan
 
-# =========================
-# LOADING BAR
-# =========================
-
-for ($i = 0; $i -le 100; $i += 2) {
-    Write-Progress -Activity "LOADING HYPER" -Status "$i%" -PercentComplete $i
-    Start-Sleep -Milliseconds 25
+for ($i=0; $i -le 100; $i+=5){
+    Write-Progress -Activity "LOADING" -Status "$i%" -PercentComplete $i
+    Start-Sleep -Milliseconds 20
 }
 
+$batUrl  = "https://raw.githubusercontent.com/attapong1117-ux/Hyper--CMD/main/Hyper.bat"
+$batPath = "$env:TEMP\Hyper.bat"
+
 Write-Host ""
-Write-Host "[ • ] LOADING COMPLETE" -ForegroundColor Green
-Write-Host "[ • ] STARTING HYPER.BAT..." -ForegroundColor Cyan
+Write-Host "[ • ] DOWNLOADING FILE..." -ForegroundColor Yellow
+
+Invoke-WebRequest -Uri $batUrl -OutFile $batPath
+
+Write-Host "[ • ] RUNNING..." -ForegroundColor Green
+
+Start-Process $batPath
+
 Write-Host ""
-
-Start-Sleep 1
-
-# =========================
-# RUN BAT (LOCAL FILE)
-# =========================
-
-$bat = Join-Path $PSScriptRoot "Hyper.bat"
-
-if (Test-Path $bat) {
-    Start-Process -FilePath $bat -WorkingDirectory $PSScriptRoot
-} else {
-    Write-Host "[ ERROR ] Hyper.bat NOT FOUND" -ForegroundColor Red
-    Pause
-}
+Write-Host "[ DONE ]" -ForegroundColor Green
+Pause
