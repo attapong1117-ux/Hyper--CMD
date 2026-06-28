@@ -54,16 +54,16 @@ echo.                                                      %COL%[38;5;124m██
 echo.                                                      %COL%[38;5;124m╚═╝  ╚═╝%COL%[97m   ╚═╝   %COL%[38;5;124m╚═╝     %COL%[97m╚══════╝%COL%[38;5;124m╚═╝  ╚═╝%COL%[0m
 echo.
 echo.
-echo.                                                     %COL%[38;5;18m SUPPORT : https://discord.gg/MXgjSzf4aH %COL%[97m
+echo.                                                     %COL%[38;5;124m SUPPORT : https://discord.gg/MXgjSzf4aH %COL%[97m
 echo.
 echo.                                          ╔══════════════════════════════════════════════════════════════╗
-echo.                                          ║ [1] [%COL%[38;5;18mHYPER%COL%[0m] BASIC POOLCUE                                    ║
-echo.                                          ║ [2] [%COL%[38;5;18mHYPER%COL%[0m] FLOW WEAPON                                      ║
-echo.                                          ║ [3] [%COL%[38;5;18mHYPER%COL%[0m] BET 10000                                        ║
-echo.                                          ║ [4] [%COL%[38;5;18mHYPER%COL%[0m] WEAPONBET WARP                                   ║
-echo.                                          ║ [5] [%COL%[38;5;18mHYPER%COL%[0m] WEAPONBET POOLCUE                                ║
-echo.                                          ║ [6] [%COL%[38;5;18mHYPER%COL%[0m] KING OF FIVEM WEAPON                             ║
-echo.                                          ║ [0] [%COL%[38;5;18mHYPER%COL%[0m] EXIT                                             ║
+echo.                                          ║ [1] [%COL%[38;5;124mHYPER%COL%[0m] BASIC POOLCUE                                    ║
+echo.                                          ║ [2] [%COL%[38;5;124mHYPER%COL%[0m] FLOW WEAPON                                      ║
+echo.                                          ║ [3] [%COL%[38;5;124mHYPER%COL%[0m] BET 10000                                        ║
+echo.                                          ║ [4] [%COL%[38;5;124mHYPER%COL%[0m] WEAPONBET WARP                                   ║
+echo.                                          ║ [5] [%COL%[38;5;124mHYPER%COL%[0m] WEAPONBET POOLCUE                                ║
+echo.                                          ║ [6] [%COL%[38;5;124mHYPER%COL%[0m] KING OF FIVEM WEAPON                             ║
+echo.                                          ║ [0] [%COL%[38;5;124mHYPER%COL%[0m] EXIT                                             ║
 echo.                                          ╚══════════════════════════════════════════════════════════════╝
 
 call :LoadingBar
