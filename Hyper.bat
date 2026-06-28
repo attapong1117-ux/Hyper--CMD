@@ -36,7 +36,7 @@ echo.                                             ╚═════════
 echo.
 set /p key=%COL%[38;5;124mKey ^> %COL%[38;5;124m
 
-if /I "%key%"=="free" goto MENU
+if /I "%key%"=="Hyper" goto MENU
 
 echo Invalid Key!
 timeout /t 2 >nul
@@ -68,7 +68,7 @@ echo.                                          ╚══════════
 
 call :LoadingBar
 
-set /p select=%COL%[38;5;18mSelect Option :
+set /p select=%COL%[38;5;124mHYPER FUNCTION :
 
 if "%select%"=="1" goto OPT1
 if "%select%"=="2" goto OPT2
