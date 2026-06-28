@@ -31,7 +31,7 @@ echo.
 echo.
 echo.
 echo.                                             ╔══════════════════════════════════════════════╗
-echo.                                             ║ %COL%[38;5;18m    ENTER YOUR LICENSE KEY TO CONTINUE%COL%[97m       ║
+echo.                                             ║ %COL%[38;5;124m    ENTER YOUR LICENSE KEY TO CONTINUE%COL%[97m       ║
 echo.                                             ╚══════════════════════════════════════════════╝
 echo.
 set /p key=%COL%[38;5;18mKey ^> %COL%[38;5;18m
